@@ -6,4 +6,4 @@ kind create cluster --name platform-lab --config kind-k8s-cluster/kind-config.ya
 
 ## This is GITHUB PR Push Test.
 
-## GitHub Test 2
+## GitHub Test 3
