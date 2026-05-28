@@ -5,4 +5,4 @@ metadata:
   name: provider-aws
 
 spec:
-  package: xpkg.upbound.io/upbound/provider-aws:v1
+  package: xpkg.upbound.io/upbound/provider-aws-s3:v1.20.0
