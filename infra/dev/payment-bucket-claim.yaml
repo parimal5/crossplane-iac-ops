@@ -1,0 +1,8 @@
+apiVersion: platform.local/v1alpha1
+kind: S3Bucket
+
+metadata:
+  name: payment-bucket
+
+spec:
+  bucketName: payment-parimal-demo-123456
