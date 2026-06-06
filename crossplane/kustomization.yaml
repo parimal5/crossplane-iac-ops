@@ -1,1 +1,3 @@
-resources: []
+resources:
+  - xrds/s3bucket-xrd.yaml
+  - compositions/s3bucket-composition.yaml
