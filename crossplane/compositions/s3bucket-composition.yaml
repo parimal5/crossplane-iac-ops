@@ -1,0 +1,29 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+
+metadata:
+  name: s3bucket-composition
+
+spec:
+  compositeTypeRef:
+    apiVersion: platform.local/v1alpha1
+    kind: S3Bucket
+
+  resources:
+    - name: bucket
+
+      base:
+        apiVersion: s3.aws.upbound.io/v1beta1
+        kind: Bucket
+
+        spec:
+          forProvider:
+            region: us-east-1
+
+          providerConfigRef:
+            name: default
+
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.bucketName
+          toFieldPath: metadata.name
