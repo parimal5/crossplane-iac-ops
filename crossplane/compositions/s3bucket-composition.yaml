@@ -4,10 +4,15 @@ kind: Composition
 metadata:
   name: s3bucket-composition
 
+  labels:
+    provider: aws
+
 spec:
   compositeTypeRef:
     apiVersion: platform.local/v1alpha1
     kind: S3Bucket
+
+  writeConnectionSecretsToNamespace: crossplane-system
 
   resources:
     - name: bucket
