@@ -1,0 +1,13 @@
+apiVersion: platform.parimal.io/v1alpha1
+kind: ApplicationServer
+
+metadata:
+  name: demo-app
+
+spec:
+  instanceType: t3.micro
+  bucketName: demo-storage
+
+  securityGroups:
+    - web
+    - rds

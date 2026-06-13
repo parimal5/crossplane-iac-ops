@@ -1,0 +1,27 @@
+# Goal: ArgoCD Application to deploy example infrastructure claims in the dev environment
+# This points to the `infra/dev` folder, where app teams can request infra resources
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+
+metadata:
+  name: infra-claims
+  namespace: argocd
+
+spec:
+  project: default
+
+  # source: repo path containing declared infra claims like `payment-bucket`
+  source:
+    repoURL: https://github.com/parimal5/crossplane-iac-ops.git
+    targetRevision: main
+    path: infra/prod
+
+  # destination: apply these claims into the default namespace
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
