@@ -1,3 +1,5 @@
+# Goal: ArgoCD Application to deploy Crossplane platform resources from the repo
+# Points ArgoCD at the `crossplane/` folder which contains XRDs, Compositions, and providers
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 
@@ -8,16 +10,21 @@ metadata:
 spec:
   project: default
 
+  # source: where ArgoCD fetches manifests from the Git repo
   source:
     repoURL: https://github.com/parimal5/crossplane-iac-ops.git
     targetRevision: main
+    # path: repository folder ArgoCD will apply (kustomize entry lives under `crossplane/`)
     path: crossplane
 
+  # destination: target cluster and namespace where these resources are applied
   destination:
     server: https://kubernetes.default.svc
     namespace: default
 
+  # syncPolicy: automated keeps cluster in sync with Git
   syncPolicy:
     automated:
+      # prune: remove resources not present in Git; selfHeal: revert manual changes
       prune: true
       selfHeal: true

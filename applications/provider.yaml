@@ -1,3 +1,5 @@
+# Goal: ArgoCD Application to install Crossplane provider packages from the repo
+# This ensures AWS provider manifests are managed by GitOps in the Crossplane namespace
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 
@@ -8,11 +10,13 @@ metadata:
 spec:
   project: default
 
+  # source: provider manifests stored under crossplane/providers
   source:
     repoURL: https://github.com/parimal5/crossplane-iac-ops.git
     targetRevision: main
     path: crossplane/providers
 
+  # destination: install these provider resources into Crossplane's namespace
   destination:
     server: https://kubernetes.default.svc
     namespace: crossplane-system

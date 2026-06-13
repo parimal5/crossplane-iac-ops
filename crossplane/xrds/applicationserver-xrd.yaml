@@ -1,0 +1,43 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: CompositeResourceDefinition
+
+metadata:
+  name: applicationservers.platform.parimal.io
+
+spec:
+  group: platform.parimal.io
+
+  names:
+    kind: ApplicationServer
+    plural: applicationservers
+
+  scope: Cluster
+
+  versions:
+    - name: v1alpha1
+      served: true
+      referenceable: true
+
+      schema:
+        openAPIV3Schema:
+          type: object
+
+          properties:
+            spec:
+              type: object
+
+              properties:
+                instanceType:
+                  type: string
+
+                bucketName:
+                  type: string
+
+                securityGroups:
+                  type: array
+                  items:
+                    type: string
+
+              required:
+                - instanceType
+                - bucketName
