@@ -6,7 +6,7 @@ metadata:
 
 spec:
   instanceType: t3.micro
-  bucketName: demo-storage
+  bucketName: parimal-storage-543098
 
   securityGroups:
     - web
