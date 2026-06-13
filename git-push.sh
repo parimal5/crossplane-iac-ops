@@ -30,6 +30,7 @@ git push -u origin "$BRANCH_NAME"
 
 echo "Switching back to main..."
 git checkout main
+git pull
 
 echo "Deleting local branch..."
 git branch -D "$BRANCH_NAME"
