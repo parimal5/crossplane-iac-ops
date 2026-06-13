@@ -1,0 +1,31 @@
+apiVersion: apiextensions.crossplane.io/v1
+kind: Composition
+
+metadata:
+  name: applicationserver-composition
+
+spec:
+  compositeTypeRef:
+    apiVersion: platform.parimal.io/v1alpha1
+    kind: ApplicationServer
+
+  writeConnectionSecretsToNamespace: crossplane-system
+
+  resources:
+    - name: bucket
+
+      base:
+        apiVersion: s3.aws.upbound.io/v1beta1
+        kind: Bucket
+
+        spec:
+          forProvider:
+            region: us-east-1
+
+          providerConfigRef:
+            name: default
+
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: spec.bucketName
+          toFieldPath: metadata.name

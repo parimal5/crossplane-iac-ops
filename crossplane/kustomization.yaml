@@ -2,3 +2,4 @@ resources:
   - xrds/s3bucket-xrd.yaml
   - xrds/applicationserver-xrd.yaml
   - compositions/s3bucket-composition.yaml
+  - compositions/applicationserver-composition.yaml
