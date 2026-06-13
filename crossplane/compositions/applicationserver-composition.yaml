@@ -36,31 +36,31 @@ spec:
     # -------------------------
     # EC2 Instance
     # -------------------------
-    - name: instance
+    # - name: instance
 
-      base:
-        apiVersion: ec2.aws.upbound.io/v1beta2
-        kind: Instance
+    #   base:
+    #     apiVersion: ec2.aws.upbound.io/v1beta2
+    #     kind: Instance
 
-        spec:
-          forProvider:
-            region: us-east-1
+    #     spec:
+    #       forProvider:
+    #         region: us-east-1
 
-            ami: ami-0521cb2d60cfbb1a6
+    #         ami: ami-0521cb2d60cfbb1a6
 
-            subnetId: subnet-06d49ab0d2e7eb7a0
+    #         subnetId: subnet-06d49ab0d2e7eb7a0
 
-            availabilityZone: us-east-1a
+    #         availabilityZone: us-east-1a
 
-            instanceType: t3.micro
+    #         instanceType: t3.micro
 
-          providerConfigRef:
-            name: default
+    #       providerConfigRef:
+    #         name: default
 
-      patches:
-        - type: FromCompositeFieldPath
-          fromFieldPath: spec.instanceType
-          toFieldPath: spec.forProvider.instanceType
-        - type: FromCompositeFieldPath
-          fromFieldPath: metadata.name
-          toFieldPath: metadata.name
+    #   patches:
+    #     - type: FromCompositeFieldPath
+    #       fromFieldPath: spec.instanceType
+    #       toFieldPath: spec.forProvider.instanceType
+    #     - type: FromCompositeFieldPath
+    #       fromFieldPath: metadata.name
+    #       toFieldPath: metadata.name
