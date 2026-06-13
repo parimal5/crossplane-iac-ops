@@ -61,6 +61,78 @@ spec:
         - type: FromCompositeFieldPath
           fromFieldPath: spec.instanceType
           toFieldPath: spec.forProvider.instanceType
+
         - type: FromCompositeFieldPath
           fromFieldPath: metadata.name
           toFieldPath: metadata.name
+    # -------------------------
+    # SG Web
+    # -------------------------
+    - name: web-sg
+
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: SecurityGroup
+
+        spec:
+          forProvider:
+            region: us-east-1
+
+            description: Web Security Group
+
+            vpcId: vpc-052f35e6575d14ab4
+
+          providerConfigRef:
+            name: default
+
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-web-sg"
+
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: spec.forProvider.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-web-sg"
+    # -------------------------
+    # SG RDS
+    # -------------------------
+    - name: rds-sg
+      base:
+        apiVersion: ec2.aws.upbound.io/v1beta1
+        kind: SecurityGroup
+
+        spec:
+          forProvider:
+            region: us-east-1
+
+            description: RDS Security Group
+
+            vpcId: vpc-052f35e6575d14ab4
+
+          providerConfigRef:
+            name: default
+
+      patches:
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: metadata.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-rds-sg"
+
+        - type: FromCompositeFieldPath
+          fromFieldPath: metadata.name
+          toFieldPath: spec.forProvider.name
+          transforms:
+            - type: string
+              string:
+                fmt: "%s-rds-sg"
